@@ -1,0 +1,42 @@
+.navbar{
+  position: fixed;
+  z-index: 10;
+  height: 65px;
+  width:100%;
+  background-image: linear-gradient(to right, #672280, #A626D3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftPart{
+  display: flex;
+  align-items: center;
+  gap:10px;
+  margin-left: 20px;
+}
+
+.leftPart > img{
+  height: 30px;
+}
+
+.leftPart > h4{
+  margin: 0;
+  font-family: Karla;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 25px;
+  letter-spacing: -2px;
+}
+
+.rightPart{
+  margin-right: 40px;
+}
+
+.rightPart > h4{
+  margin: 0;
+  font-weight: 600;
+  font-family: Inter;
+  line-height: 15px;
+  font-size: 14px;
+}

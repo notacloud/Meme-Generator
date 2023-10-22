@@ -1,0 +1,15 @@
+.footer > h4 {
+  font-family: Karla;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-image: linear-gradient(to right, #711F8D, #A818DA);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
