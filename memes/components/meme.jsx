@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./meme.css"
 import memes from "../memesData"
 
 export function Meme() {
-  const [meme, setMeme] = useState({ topText: '', bottomText: '', randomImage: 'http://i.imgflip.com/1bij.jpg' })
+  const [data, setData] = useState({ 'topLine': "", 'bottomLine': "", randomImage: 'http://i.imgflip.com/1bij.jpg', count: 0 })
 
-  const [allMemeImages, setAllMemeImages] = useState(memes.data.memes)
-
-  const [data, setData] = useState({ 'topLine': "", 'bottomLine': "" })
+  useEffect(function(){
+    fetch("https://api.imgflip.com/get_memes")
+    .then((response) => {
+      return response.json();
+    })
+    .then(response => {
+      setData((prev) => {
+        return {...prev, randomImage: response.data.memes[Math.floor(Math.random() * response.data.memes.length)].url}
+      })
+    })
+  }, [data.count])
 
   function getImage() {
-    setMeme(item => {
+    setData(prev =>{
       return {
-        ...item,
-        randomImage: allMemeImages[Math.floor(Math.random() * allMemeImages.length)].url
+        ...prev,
+        count:prev.count + 1
       }
-    })
+    });
   }
 
   function handleChange(event) {
@@ -26,7 +34,6 @@ export function Meme() {
         [name]: value
       })
     })
-    console.log(data)
   }
 
   return (
@@ -40,7 +47,7 @@ export function Meme() {
           <button title="Click to generate image" type="button" onClick={getImage}>Get a new meme image 🖼</button>
         </div>
         <div className="image">
-          <img id="memeImage" src={meme.randomImage}></img>
+          <img id="memeImage" src={data.randomImage}></img>
           <h2 className="meme--text top">{data.topLine}</h2>
           <h2 className="meme--text bottom">{data.bottomLine}</h2>
         </div>
